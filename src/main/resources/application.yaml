@@ -1,0 +1,12 @@
+spring:
+  application:
+    name: numeric-generate-service
+  data:
+    redis:
+      host: 82.97.249.52
+      port: 6379
+      username: default
+      password: kMXljs~l1lD7L
+
+redis:
+  key: orders_code_5

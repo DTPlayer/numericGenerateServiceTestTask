@@ -1,10 +1,16 @@
 services:
+  numeric-generate-service:
+    image: numeric-generate-service:latest
+    build: .
+    restart: "no"
+    ports:
+      - "8080:8080"
   redis:
     image: redis:7.4.2
     restart: "no"
     command: [ "redis-server", "/etc/redis/redis.conf" ]
     volumes:
-      - ./redis/redis-dev.conf:/etc/redis/redis.conf
+      - ./redis/redis-prod.conf:/etc/redis/redis.conf
     ports:
       - "6379:6379"
     healthcheck:

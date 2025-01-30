@@ -7,6 +7,13 @@ plugins {
 group = 'io.refactor'
 version = '0.0.1-SNAPSHOT'
 
+bootJar {
+    layered {
+        enabled = true // Включаем поддержку слоев
+    }
+    launchScript() // Опционально, если вам нужен запуск скрипта
+}
+
 java {
     toolchain {
         languageVersion = JavaLanguageVersion.of(21)
@@ -25,7 +32,6 @@ repositories {
 
 dependencies {
     implementation 'redis.clients:jedis:5.2.0'
-
     implementation 'org.springframework.boot:spring-boot-starter-data-redis'
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'

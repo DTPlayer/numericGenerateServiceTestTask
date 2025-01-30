@@ -1,15 +1,21 @@
-FROM bellsoft/liberica-openjre-debian:23.0.2 AS layers
-WORKDIR /application
-COPY build/libs/*.jar app.jar
-RUN java -Djarmode=layertools -jar app.jar extract
+# Этап 1: Сборка проекта
+FROM gradle:jdk21-alpine AS builder
 
-FROM bellsoft/liberica-openjre-debian:23.0.2
-VOLUME /tmp
+WORKDIR /app
+
+COPY . .
+
+RUN gradle clean build
+
+FROM bellsoft/liberica-openjre-debian:23.0.2 AS runner
+
 RUN useradd -ms /bin/bash spring-user
 USER spring-user
-COPY --from=layers /application/dependencies/ ./
-COPY --from=layers /application/spring-boot-loader/ ./
-COPY --from=layers /application/snapshot-dependencies/ ./
-COPY --from=layers /application/application/ ./
 
-ENTRYPOINT ["java", "org.springframework.boot.loader.launch.JarLauncher"]
+WORKDIR /app
+
+COPY --from=builder /app/build/libs/*.jar app.jar
+
+EXPOSE 8080
+
+ENTRYPOINT ["java", "-jar", "app.jar"]

@@ -3,10 +3,10 @@ spring:
     name: numeric-generate-service
   data:
     redis:
-      host: localhost
+      host: redis
       port: 6379
       username: default
-      password: LyzujM14&x,2
+      password: supersecretpassword
 
 redis:
   key: orders_code_5

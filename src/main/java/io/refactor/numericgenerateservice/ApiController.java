@@ -12,11 +12,11 @@ import java.util.Optional;
 
 @RestController
 @RequestMapping("/numbers")
-public class ApiRouters {
+public class ApiController {
 
     private final CodeGenerator codeGenerator;
 
-    public ApiRouters(CodeGenerator codeGenerator) {
+    public ApiController(CodeGenerator codeGenerator) {
         this.codeGenerator = codeGenerator;
     }
 

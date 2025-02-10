@@ -9,9 +9,9 @@ version = '0.0.1-SNAPSHOT'
 
 bootJar {
     layered {
-        enabled = true // Включаем поддержку слоев
+        enabled = true
     }
-    launchScript() // Опционально, если вам нужен запуск скрипта
+    launchScript()
 }
 
 java {
